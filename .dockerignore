@@ -1,0 +1,30 @@
+# =============================================================
+# .dockerignore — Microservice IA FastAPI
+# =============================================================
+# Fichiers exclus du build Docker pour garder l'image légère.
+# =============================================================
+
+# Environnement virtuel Python (réinstallé dans le conteneur)
+venv/
+env/
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+*.pyo
+
+# Dossier Git
+.git/
+.gitignore
+
+# Fichier .env local (les variables viennent du docker-compose)
+.env
+
+# Documentation
+README.md
+
+# Logs
+*.log
+
+# Cache pytest
+.pytest_cache/

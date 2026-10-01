@@ -5,6 +5,9 @@ from google import genai
 
 from app.core.config import GEMINI_API_KEY
 from app.schemas.gemini_schema import GeminiAnalysisResponse
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 # Création du client Gemini avec la clé API configurée dans le projet.
@@ -96,10 +99,7 @@ def analyser_image_avec_gemini(
     for tentative in range(nombre_tentatives):
 
         try:
-            print(
-                f"🔎 Analyse Gemini - tentative "
-                f"{tentative + 1}/{nombre_tentatives}"
-            )
+            logger.debug(f"Analyse Gemini - tentative {tentative + 1}/{nombre_tentatives}")
 
             # ---------------------------------------------------------
             # Conversion de l'image en Base64.
@@ -153,14 +153,14 @@ def analyser_image_avec_gemini(
             if not texte_reponse:
                 raise ValueError("Gemini a retourné une réponse vide.")
 
-            print("📦 Réponse Gemini :", texte_reponse)
+            logger.debug(f"Réponse Gemini : {texte_reponse}")
 
             # Validation du JSON reçu avec notre modèle Pydantic.
             resultat = GeminiAnalysisResponse.model_validate_json(
                 texte_reponse
             )
 
-            print("✅ Analyse Gemini réussie.")
+            print(" Analyse Gemini réussie.")
 
             return resultat
 
@@ -168,7 +168,7 @@ def analyser_image_avec_gemini(
 
             message_erreur = str(erreur)
 
-            print("❌ Erreur Gemini :", message_erreur)
+            print(" Erreur Gemini :", message_erreur)
 
             # ---------------------------------------------------------
             # Certaines erreurs sont temporaires :
@@ -192,7 +192,7 @@ def analyser_image_avec_gemini(
             if tentative == nombre_tentatives - 1:
 
                 print(
-                    "❌ Gemini reste indisponible après "
+                    " Gemini reste indisponible après "
                     "plusieurs tentatives."
                 )
 
@@ -203,7 +203,7 @@ def analyser_image_avec_gemini(
             temps_attente = 2 ** tentative
 
             print(
-                f"⏳ Gemini indisponible. "
+                f" Gemini indisponible. "
                 f"Nouvelle tentative dans "
                 f"{temps_attente} seconde(s)..."
             )

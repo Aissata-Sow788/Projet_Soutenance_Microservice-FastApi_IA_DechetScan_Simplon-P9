@@ -7,9 +7,8 @@ load_dotenv()
 
 
 # Récupère la clé API Gemini
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+# GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
-
-# Vérifie que la clé est bien configurée
-if not GEMINI_API_KEY:
-    raise ValueError("La variable GEMINI_API_KEY n'est pas configurée.")
+if not OPENROUTER_API_KEY:
+    raise ValueError("La variable OPENROUTER_API_KEY n'est pas configurée.")

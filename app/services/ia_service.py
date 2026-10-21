@@ -6,7 +6,7 @@ from fastapi.concurrency import run_in_threadpool
 from PIL import Image, ImageOps
 
 # Fonction qui envoie l'image aux modèles OpenRouter pour l'analyse
-from app.services.ia_service_openrouter import analyser_image_avec_ia
+from app.services.ia_service_groq import analyser_image_avec_ia
 
 logger = logging.getLogger(__name__)
 

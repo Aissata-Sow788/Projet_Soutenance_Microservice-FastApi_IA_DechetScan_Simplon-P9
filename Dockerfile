@@ -80,6 +80,6 @@ EXPOSE 8001
 #   "app.main:app"       → fichier app/main.py, objet FastAPI "app"
 #   --host 0.0.0.0       → écoute sur toutes les interfaces réseau
 #   --port 8001          → port d'écoute
-#   --workers 2          → 2 processus parallèles pour les requêtes
 # -------------------------------------------------------------
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "2"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "2"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
